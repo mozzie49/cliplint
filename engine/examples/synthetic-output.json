@@ -1,0 +1,293 @@
+{
+  "schemaVersion": "1.0",
+  "engine": {
+    "name": "ClipLint",
+    "version": "0.1.0",
+    "mode": "deterministic-and-heuristic"
+  },
+  "status": "needs-review",
+  "summary": {
+    "issueCount": 5,
+    "bySeverity": {
+      "high": 0,
+      "medium": 4,
+      "low": 1,
+      "info": 0
+    },
+    "selectedDuration": 4,
+    "selectedCueCount": 1
+  },
+  "source": {
+    "duration": 20,
+    "cueCount": 5,
+    "format": "json"
+  },
+  "selection": {
+    "ranges": [
+      {
+        "start": 8,
+        "end": 12
+      }
+    ],
+    "text": "这样可以降低20%的客服成本。",
+    "timingPrecision": "cue-level"
+  },
+  "draft": {
+    "title": "AI降低80%的客服成本",
+    "copy": "“所有客服岗位都会消失”"
+  },
+  "issues": [
+    {
+      "id": "issue-1",
+      "ruleId": "DANGLING_OPENING",
+      "assessment": "heuristic",
+      "severity": "low",
+      "confidence": "low",
+      "title": "Opening may depend on earlier context",
+      "message": "The first selected cue begins with a reference or consequence cue that may rely on omitted speech.",
+      "rangeIndex": 0,
+      "evidence": [
+        {
+          "cueId": "cue-2",
+          "start": 4,
+          "end": 8,
+          "text": "如果只处理简单问题，成本可以降低。",
+          "role": "omitted",
+          "speaker": "演示嘉宾"
+        },
+        {
+          "cueId": "cue-3",
+          "start": 8,
+          "end": 12,
+          "text": "这样可以降低20%的客服成本。",
+          "role": "selected",
+          "speaker": "演示嘉宾"
+        }
+      ],
+      "suggestion": "Check whether the audience can identify the referent; extend the opening or add a faithful context label.",
+      "uncertainty": "Pronouns and transitions can be fully understandable on their own. This rule does not resolve references."
+    },
+    {
+      "id": "issue-2",
+      "ruleId": "OMITTED_QUALIFIER",
+      "assessment": "heuristic",
+      "severity": "medium",
+      "confidence": "low",
+      "title": "A nearby qualifier is outside the selection",
+      "message": "An omitted cue before this range contains condition language and may qualify the selected statement.",
+      "rangeIndex": 0,
+      "markers": [
+        {
+          "kind": "condition",
+          "text": "如果"
+        }
+      ],
+      "evidence": [
+        {
+          "cueId": "cue-2",
+          "start": 4,
+          "end": 8,
+          "text": "如果只处理简单问题，成本可以降低。",
+          "role": "omitted",
+          "speaker": "演示嘉宾"
+        },
+        {
+          "cueId": "cue-3",
+          "start": 8,
+          "end": 12,
+          "text": "这样可以降低20%的客服成本。",
+          "role": "selected",
+          "speaker": "演示嘉宾"
+        }
+      ],
+      "suggestion": "Listen to both cues together. Include the qualifier or adjust the copy if it changes the intended claim.",
+      "uncertainty": "Adjacency, cue words, and shared terms do not establish logical scope. Speaker attribution is checked only when both cues explicitly provide it."
+    },
+    {
+      "id": "issue-3",
+      "ruleId": "OMITTED_QUALIFIER",
+      "assessment": "heuristic",
+      "severity": "medium",
+      "confidence": "low",
+      "title": "A nearby qualifier is outside the selection",
+      "message": "An omitted cue after this range contains negation/qualification language and may qualify the selected statement.",
+      "rangeIndex": 0,
+      "markers": [
+        {
+          "kind": "negation",
+          "text": "不能"
+        },
+        {
+          "kind": "qualification",
+          "text": "但是"
+        },
+        {
+          "kind": "qualification",
+          "text": "只是"
+        },
+        {
+          "kind": "qualification",
+          "text": "样本"
+        }
+      ],
+      "evidence": [
+        {
+          "cueId": "cue-4",
+          "start": 12,
+          "end": 16,
+          "text": "但是，这只是小样本，不能推广到所有业务。",
+          "role": "omitted",
+          "speaker": "演示嘉宾"
+        },
+        {
+          "cueId": "cue-3",
+          "start": 8,
+          "end": 12,
+          "text": "这样可以降低20%的客服成本。",
+          "role": "selected",
+          "speaker": "演示嘉宾"
+        }
+      ],
+      "suggestion": "Listen to both cues together. Include the qualifier or adjust the copy if it changes the intended claim.",
+      "uncertainty": "Adjacency, cue words, and shared terms do not establish logical scope. Speaker attribution is checked only when both cues explicitly provide it."
+    },
+    {
+      "id": "issue-4",
+      "ruleId": "NUMBER_MISMATCH",
+      "assessment": "heuristic",
+      "severity": "medium",
+      "confidence": "medium",
+      "title": "Draft quantity is not matched in selected cues",
+      "message": "“80%” has no equivalent quantity in the selected transcript; it contains different percent quantities.",
+      "draftField": "title",
+      "draftSpan": {
+        "start": 4,
+        "text": "80%"
+      },
+      "sourceQuantities": [
+        "20%"
+      ],
+      "evidence": [
+        {
+          "cueId": "cue-3",
+          "start": 8,
+          "end": 12,
+          "text": "这样可以降低20%的客服成本。",
+          "role": "selected",
+          "speaker": "演示嘉宾"
+        }
+      ],
+      "suggestion": "Verify the number and its referent against the recording. Correct the draft if it is intended to restate this passage.",
+      "uncertainty": "This compares literal quantities and exact ms/second/minute/hour scaling, not other conversions, arithmetic, valid rounding, attribution, or semantic equivalence. Percent and percentage points are separate."
+    },
+    {
+      "id": "issue-5",
+      "ruleId": "QUOTE_NOT_FOUND",
+      "assessment": "deterministic",
+      "severity": "medium",
+      "confidence": "high",
+      "title": "Quoted wording was not found verbatim",
+      "message": "“所有客服岗位都会消失” has no normalized match within one continuous speaker block in the supplied transcript.",
+      "draftField": "copy",
+      "draftSpan": {
+        "start": 0,
+        "text": "所有客服岗位都会消失"
+      },
+      "evidence": [
+        {
+          "cueId": "cue-1",
+          "start": 0,
+          "end": 4,
+          "text": "我们测试了客服自动化。",
+          "role": "omitted",
+          "speaker": "演示嘉宾"
+        },
+        {
+          "cueId": "cue-3",
+          "start": 8,
+          "end": 12,
+          "text": "这样可以降低20%的客服成本。",
+          "role": "selected",
+          "speaker": "演示嘉宾"
+        },
+        {
+          "cueId": "cue-4",
+          "start": 12,
+          "end": 16,
+          "text": "但是，这只是小样本，不能推广到所有业务。",
+          "role": "omitted",
+          "speaker": "演示嘉宾"
+        }
+      ],
+      "suggestion": "Check the recording and quotation. Use exact wording or clearly label a paraphrase.",
+      "uncertainty": "Matching ignores case and ordinary punctuation, preserves English word boundaries/hyphens, and permits ordered ellipsis fragments. Ellipses may still omit meaning-critical context. Audio, ASR accuracy, translation, and rhetorical use of quotes are unassessed."
+    }
+  ],
+  "coverage": [
+    {
+      "ruleId": "RANGE_INVALID",
+      "status": "checked"
+    },
+    {
+      "ruleId": "RANGE_EMPTY",
+      "status": "checked"
+    },
+    {
+      "ruleId": "RANGE_OVERLAP",
+      "status": "skipped",
+      "reason": "Only one range was selected."
+    },
+    {
+      "ruleId": "PARTIAL_CUE",
+      "status": "checked"
+    },
+    {
+      "ruleId": "OMITTED_QUALIFIER",
+      "status": "checked"
+    },
+    {
+      "ruleId": "DANGLING_OPENING",
+      "status": "checked"
+    },
+    {
+      "ruleId": "STITCH_CONTEXT",
+      "status": "skipped",
+      "reason": "Only one range was selected."
+    },
+    {
+      "ruleId": "NUMBER_MISMATCH",
+      "status": "checked"
+    },
+    {
+      "ruleId": "NUMBER_OUTSIDE_CLIP",
+      "status": "checked"
+    },
+    {
+      "ruleId": "QUOTE_NOT_FOUND",
+      "status": "checked"
+    },
+    {
+      "ruleId": "QUOTE_OUTSIDE_CLIP",
+      "status": "checked"
+    },
+    {
+      "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+      "status": "skipped",
+      "reason": "No comparable quote attribution with known explicit source speaker metadata."
+    }
+  ],
+  "warnings": [],
+  "semanticAssessment": {
+    "status": "unassessed",
+    "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+  },
+  "limitations": [
+    "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+    "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+    "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+    "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+    "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+    "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+    "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+  ]
+}

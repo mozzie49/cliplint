@@ -1,0 +1,23 @@
+1
+00:00:00,000 --> 00:00:04,000
+This is a synthetic interview for testing ClipLint.
+
+2
+00:00:04,000 --> 00:00:08,000
+If we only handle simple support requests, costs can fall.
+
+3
+00:00:08,000 --> 00:00:12,000
+Then we can cut support costs by 20%.
+
+4
+00:00:12,000 --> 00:00:16,000
+We still ask a person to check complex requests.
+
+5
+00:00:16,000 --> 00:00:20,000
+But this support result only applies to our small pilot.
+
+6
+00:00:20,000 --> 00:00:24,000
+We need more evidence before making a broader claim.

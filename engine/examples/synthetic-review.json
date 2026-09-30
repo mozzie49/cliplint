@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "description": "Invented dialogue for demonstrating review signals. No real interview or benchmark claim.",
+  "transcript": {
+    "cues": [
+      { "start": 0, "end": 4, "text": "我们测试了客服自动化。", "speaker": "演示嘉宾" },
+      { "start": 4, "end": 8, "text": "如果只处理简单问题，成本可以降低。", "speaker": "演示嘉宾" },
+      { "start": 8, "end": 12, "text": "这样可以降低20%的客服成本。", "speaker": "演示嘉宾" },
+      { "start": 12, "end": 16, "text": "但是，这只是小样本，不能推广到所有业务。", "speaker": "演示嘉宾" },
+      { "start": 16, "end": 20, "text": "复杂问题仍然需要人工判断。", "speaker": "演示嘉宾" }
+    ]
+  },
+  "ranges": [{ "start": 8, "end": 12 }],
+  "title": "AI降低80%的客服成本",
+  "copy": "“所有客服岗位都会消失”",
+  "contextWindowSeconds": 12
+}
