@@ -1,0 +1,22 @@
+{
+  "name": "cliplint",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "Local-first bilingual transcript/clip pre-publication review workbench",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "npm run test:ui && npm run test:engine",
+    "check": "node --check dist/app.js && node --check dist/engine/index.js",
+    "test:ui": "node --test tests/*.test.mjs",
+    "test:engine": "node --test engine/test/*.test.js",
+    "sync:engine": "node scripts/sync-engine.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "jsdom": "^26.1.0"
+  }
+}
