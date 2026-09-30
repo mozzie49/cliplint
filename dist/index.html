@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ClipLint is a local-first, bilingual source review workbench for interview and podcast clips. Inspect deterministic flags, compare original context, and export an auditable review.">
+<meta name="theme-color" content="#f5f4ef"><title>ClipLint · 剪辑审校台</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<a class="skip" href="#main">跳到审校工作区 / Skip to review</a>
+<header class="topbar">
+ <a href="./" class="brand" aria-label="ClipLint home"><span class="brand-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 4H4v10h4M24 4h4v10h-4M8 28H4V18h4M24 28h4V18h-4"/><path d="m10 16 4 4 9-10"/></svg></span><span>ClipLint<span class="version">0.1</span></span></a>
+ <div class="top-meta"><span class="local-dot"></span><span data-i18n="local">本地处理 · 无需账号</span></div>
+ <nav class="top-actions" aria-label="Project actions"><button class="text-button" id="import-project" data-i18n="importProject">导入项目</button><button class="button small" id="save-project"><span aria-hidden="true">↓</span><span data-i18n="saveProject">保存项目</span></button><button id="language" class="language-button" aria-label="Switch language to English">EN</button></nav>
+ <input id="project-file" class="visually-hidden" type="file" accept=".json,application/json">
+</header>
+<main id="main">
+ <section class="workspace-head">
+  <div><div class="eyebrow" data-i18n="eyebrow">SOURCE REVIEW / 发布前审校</div><h1 data-i18n="heading">让每个切片，有据可查<span class="title-period">.</span></h1><p class="intro" data-i18n="intro">对照原话，检查片段边界与发布文案，留下你的判断。</p></div>
+  <div class="project-context"><span class="sample-pill" id="sample-tag" data-i18n="synthetic">合成示例 · 非真实采访</span><button id="load-sample" class="text-button" data-i18n="loadSample">重新载入示例 ↗</button></div>
+ </section>
+ <div class="notice" id="notice" role="status" aria-live="polite" hidden></div>
+ <section class="workspace" aria-label="Clip review workspace">
+ <aside class="input-panel">
+  <div class="panel-title"><h2><span class="section-num">01</span><span data-i18n="sourceSetup">审校输入</span></h2><span class="tiny-label" data-i18n="editable">可编辑</span></div>
+  <div class="input-scroll">
+   <div class="field-heading"><label for="source" data-i18n="transcript">原始逐字稿</label><button class="text-button" id="upload-source" data-i18n="importFile">选择文件</button></div>
+   <div class="source-controls"><select id="format" aria-label="Transcript format"><option value="auto">Auto · SRT / VTT / JSON</option><option value="srt">SRT</option><option value="vtt">WebVTT</option><option value="json">JSON</option></select><span data-i18n="maxSize">≤ 2 MB</span></div>
+   <textarea id="source" rows="7" maxlength="2000000" spellcheck="false" aria-describedby="source-help"></textarea>
+   <input id="source-file" class="visually-hidden" type="file" accept=".srt,.vtt,.json,text/plain,application/json">
+   <p class="field-hint" id="source-help" data-i18n="sourceHelp">UTF-8 文件。JSON 使用 start、end（秒）和 text 字段。</p>
+   <div class="field-heading range-label"><label data-i18n="ranges">保留的原片时间段</label><button class="text-button" id="add-range" data-i18n="addRange">＋ 添加</button></div>
+   <p class="field-hint" data-i18n="rangeHelp">按成片播放顺序；秒数或 HH:MM:SS.mmm</p>
+   <div id="ranges"></div>
+   <div class="divider"></div>
+   <label for="draft-title" data-i18n="titleLabel">发布标题</label><input id="draft-title" maxlength="500" type="text">
+   <label for="draft-copy" data-i18n="copyLabel">发布文案</label><textarea id="draft-copy" maxlength="10000" rows="3"></textarea>
+   <div class="privacy-note"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 8V6a5 5 0 0 1 10 0v2M4 8h12v10H4z"/></svg><p data-i18n="privacy">稿件只在当前页面内存中处理。关闭即清除；点击“保存项目”才会下载到你的设备。</p></div>
+  </div>
+  <div class="run-area"><button id="run-review" class="button primary"><span data-i18n="runReview">运行审校</span><span aria-hidden="true">↗</span></button><span id="input-state" data-i18n="inputReady">当前输入已检查</span></div>
+ </aside>
+ <div class="review-panel">
+  <div class="review-top"><div class="panel-title"><h2><span class="section-num">02</span><span data-i18n="reviewQueue">审校队列</span></h2><div class="export-group"><button class="text-button" id="export-md" data-i18n="exportMd">导出 Markdown</button><button class="text-button" id="export-json" data-i18n="exportJson">JSON ↓</button></div></div>
+   <div class="review-summary"><div class="summary-number" id="issue-count">0</div><div><strong id="summary-label"></strong><p id="summary-subtitle"></p></div><div class="review-progress"><span id="progress-label"></span><div class="progress-track"><div id="progress-fill"></div></div></div></div>
+   <div class="status-filter" id="filter-tabs" role="group" aria-label="Filter findings"></div>
+  </div>
+  <div class="review-body"><div class="findings-list" id="findings-list" aria-label="Review findings"></div><div class="evidence-panel" id="evidence-panel"></div></div>
+  <div class="coverage" id="coverage"></div>
+ </div>
+ </section>
+ <footer><span><b>ClipLint</b> <span data-i18n="footerType">/ 确定性审校工具</span></span><span data-i18n="footerDisclaimer">不是事实核查或法律工具。未检出提示 ≠ 语义忠实；语义忠实度尚未评估。</span><a class="text-button" href="https://github.com/mozzie49/cliplint" target="_blank" rel="noopener noreferrer" data-i18n="sourceLink">源码 ↗</a><button class="text-button" id="about" data-i18n="about">方法与边界 ↗</button></footer>
+</main>
+<dialog id="about-dialog" aria-labelledby="about-title"><div class="dialog-heading"><h2 id="about-title" data-i18n="aboutTitle">方法与边界</h2><button id="close-about" class="icon-button" aria-label="Close">×</button></div><div id="about-content"></div></dialog>
+<script type="module" src="./app.js"></script>
+</body></html>
