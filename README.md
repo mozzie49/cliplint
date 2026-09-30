@@ -1,9 +1,5 @@
 # ClipLint
 
-> Source distribution: the complete runnable v0.1.0 project is currently available as [cliplint-v0.1.0-source.zip](./cliplint-v0.1.0-source.zip). Download and extract it, then run the commands below inside the extracted `cliplint/` folder. The repository working tree does not yet contain the implementation or CI workflow. The archive includes all 72 source/documentation/evaluation files; its 101 local tests pass. No GitHub CI result is claimed.
-
-> 源码交付说明：完整可运行项目目前在上方 ZIP 压缩包中。下载并解压后，在 `cliplint/` 文件夹内运行下方命令。当前仓库工作目录尚未展开实现代码或 CI 配置；压缩包包含全部 72 个文件，101 项本地测试通过。
-
 [中文说明](#中文说明) · [Source repository](https://github.com/mozzie49/cliplint)
 
 A local-first, bilingual pre-publication review workbench for interview and podcast clips. Compare selected source ranges and publishing copy against a timestamped transcript, inspect concrete rule signals in context, and keep an auditable human review trail.
