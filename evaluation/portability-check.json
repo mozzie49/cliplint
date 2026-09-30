@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "layout": "evaluation/ sibling engine/",
+  "invoked_from": "different working directory",
+  "explicit_environment_override": false,
+  "determinate_cases": 45,
+  "source_gold_hashes_verified": true
+}

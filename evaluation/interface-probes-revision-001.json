@@ -1,0 +1,223 @@
+{
+  "synthetic": true,
+  "status": "post-baseline-development-probes",
+  "at": "2026-09-30T07:41:50.556Z",
+  "checks": [
+    {
+      "id": "P01",
+      "description": "JSON, SRT and VTT preserve text and timestamps",
+      "status": "pass",
+      "detail": [
+        {
+          "cues": [
+            {
+              "id": "cue-1",
+              "start": 1.25,
+              "end": 4.5,
+              "text": "We tested 25% of the sample. 第二步仍需验证。",
+              "sourceId": "external-cue"
+            }
+          ],
+          "warnings": [],
+          "format": "json"
+        },
+        {
+          "cues": [
+            {
+              "id": "cue-1",
+              "start": 1.25,
+              "end": 4.5,
+              "text": "We tested 25% of the sample. 第二步仍需验证。"
+            }
+          ],
+          "warnings": [],
+          "format": "srt"
+        },
+        {
+          "cues": [
+            {
+              "id": "cue-1",
+              "start": 1.25,
+              "end": 4.5,
+              "text": "We tested 25% of the sample. 第二步仍需验证。"
+            }
+          ],
+          "warnings": [],
+          "format": "vtt"
+        }
+      ]
+    },
+    {
+      "id": "P02",
+      "description": "WebVTT speaker tags retained as explicit metadata",
+      "status": "pass",
+      "detail": {
+        "cues": [
+          {
+            "id": "cue-1",
+            "start": 0,
+            "end": 5,
+            "text": "Hello, world.",
+            "speaker": "Maya"
+          }
+        ],
+        "warnings": [],
+        "format": "vtt"
+      }
+    },
+    {
+      "id": "P03-NaN",
+      "description": "Reject non-finite cue timestamps",
+      "status": "pass",
+      "detail": {
+        "rejected": true
+      }
+    },
+    {
+      "id": "P03-Infinity",
+      "description": "Reject non-finite cue timestamps",
+      "status": "pass",
+      "detail": {
+        "rejected": true
+      }
+    },
+    {
+      "id": "P03-negative infinity",
+      "description": "Reject non-finite cue timestamps",
+      "status": "pass",
+      "detail": {
+        "rejected": true
+      }
+    },
+    {
+      "id": "P04",
+      "description": "Invalid range prevents partial review of otherwise valid range",
+      "status": "pass",
+      "detail": {
+        "status": "invalid-input",
+        "coverage": [
+          {
+            "ruleId": "RANGE_INVALID",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_EMPTY",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "RANGE_OVERLAP",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "PARTIAL_CUE",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "OMITTED_QUALIFIER",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "DANGLING_OPENING",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "STITCH_CONTEXT",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "NUMBER_MISMATCH",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "NUMBER_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "QUOTE_NOT_FOUND",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "QUOTE_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          },
+          {
+            "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+            "status": "skipped",
+            "reason": "Fix all invalid ranges before content review; partial reviews can hide missing context."
+          }
+        ]
+      }
+    },
+    {
+      "id": "P05",
+      "description": "Duplicate supplied IDs normalize to unique evidence identifiers",
+      "status": "pass",
+      "detail": {
+        "cues": [
+          {
+            "id": "cue-1",
+            "start": 0,
+            "end": 2,
+            "text": "The first sentence.",
+            "sourceId": "same"
+          },
+          {
+            "id": "cue-2",
+            "start": 2,
+            "end": 4,
+            "text": "The second sentence.",
+            "sourceId": "same"
+          }
+        ],
+        "warnings": [
+          {
+            "code": "DUPLICATE_SOURCE_ID",
+            "message": "Repeated source cue ID at cue 2; generated cue IDs are used to disambiguate."
+          }
+        ],
+        "format": "json"
+      }
+    },
+    {
+      "id": "P06",
+      "description": "Input array and range order are not mutated",
+      "status": "pass",
+      "detail": {
+        "unchanged": true
+      }
+    },
+    {
+      "id": "P07",
+      "description": "No-signal reports explicitly prohibit semantic certification",
+      "status": "pass",
+      "detail": {
+        "status": "no-signals",
+        "semanticAssessment": {
+          "status": "unassessed",
+          "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+        },
+        "limitations": [
+          "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+          "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+          "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+          "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+          "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+          "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+          "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+        ]
+      }
+    }
+  ],
+  "passed": 9,
+  "failed": 0
+}

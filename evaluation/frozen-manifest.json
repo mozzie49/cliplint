@@ -1,0 +1,8 @@
+{
+  "version": "v1",
+  "frozen_before_engine_inspection": true,
+  "files": {
+    "cases.synthetic.v1.json": "340bee6f821a8cc08eadef0f1d905f03e15dc5d364bd2ec8c1012125cd72f872",
+    "malformed.synthetic.v1.json": "f9cb37bc3e33f5b3848b02987def78f1a282bba59fe0052716072c10d941651c"
+  }
+}

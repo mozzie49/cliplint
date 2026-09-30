@@ -1,0 +1,2098 @@
+{
+  "schema_version": "1.0",
+  "name": "ClipLint independent synthetic adversarial evaluation v1",
+  "synthetic": true,
+  "disclaimer": "All people, episodes and factual scenarios are synthetic. This small challenge set is not representative and cannot establish real-world accuracy, safety, or editorial correctness.",
+  "creation_method": "Authored and labels fixed independently before reading or executing the implementation. Gold labels are semantic requirements, not a list of rules known to be implemented.",
+  "clip_range_semantics": "Half-open source-time intervals in listed playback order. Whole cues are used except explicitly tagged partial-cue abstention cases.",
+  "label_ontology": {
+    "numeric_mismatch": "A numeric value, magnitude, unit, relation, or role asserted by title/copy conflicts with supplied source context.",
+    "omitted_condition": "A necessary qualification, scope, exception, hedge, or causal limitation is removed, creating a materially stronger/different claim.",
+    "negation_reversal": "A source negation or explicitly rejected stance is reversed by title/copy or chosen content.",
+    "unsupported_quote": "Material presented as a direct quotation is not supported by the attributed source utterance, after harmless formatting normalization.",
+    "misattribution": "A claim or stance is falsely assigned to a named speaker; reporting a claim is not endorsing it.",
+    "misleading_splice": "Discontinuous selection or reordering removes or changes a meaning-critical relationship between passages.",
+    "incomplete_reference": "The selected transcript has an unresolved textual reference or unfinished meaning-critical clause.",
+    "insufficient_evidence": "Available text/timing/speaker metadata cannot establish the requested conclusion; avoid affirmative certification and identify the limit."
+  },
+  "cases": [
+    {
+      "id": "N01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "pilot-count",
+      "focus": "changed integer",
+      "source_cues": [
+        {
+          "id": "N01-c1",
+          "start": 0,
+          "end": 5,
+          "text": "We enrolled 12 volunteers in the pilot.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "Pilot enrolled 21 volunteers",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "The sole enrollment count is 12, not 21.",
+        "evidence_cue_ids": [
+          "N01-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N02",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "conversion-change",
+      "focus": "percent vs percentage points",
+      "source_cues": [
+        {
+          "id": "N02-c1",
+          "start": 0,
+          "end": 6,
+          "text": "Conversion rose from 20% to 23%, an increase of 3 percentage points.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Conversion increased by 3%",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "A 3-percentage-point increase from 20% is a 15% relative increase, not 3%.",
+        "evidence_cue_ids": [
+          "N02-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N03",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "N03",
+      "focus": "same value wrong unit",
+      "source_cues": [
+        {
+          "id": "N03-c1",
+          "start": 0,
+          "end": 5,
+          "text": "优化后，单次请求延迟为80毫秒。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "优化后延迟仅80秒",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "80秒与80毫秒相差一千倍。",
+        "evidence_cue_ids": [
+          "N03-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N04",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "N04",
+      "focus": "magnitude word swap",
+      "source_cues": [
+        {
+          "id": "N04-c1",
+          "start": 0,
+          "end": 5,
+          "text": "The synthetic project cost $2 million in total.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "Project cost $2 billion",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "The magnitude changed from million to billion.",
+        "evidence_cue_ids": [
+          "N04-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N05",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "N05",
+      "focus": "range converted to certainty",
+      "source_cues": [
+        {
+          "id": "N05-c1",
+          "start": 0,
+          "end": 6,
+          "text": "在这项模拟中，预计节省10%到20%的时间。",
+          "speaker": "李"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "确定节省20%的时间",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch",
+          "omitted_condition"
+        ],
+        "rationale": "A forecast range is presented as a guaranteed upper endpoint; simulation and uncertainty are omitted.",
+        "evidence_cue_ids": [
+          "N05-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N06",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "N06",
+      "focus": "numeric relation reversal",
+      "source_cues": [
+        {
+          "id": "N06-c1",
+          "start": 0,
+          "end": 6,
+          "text": "The error rate was below 0.05%, not 5%.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Error rate reached 5%",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch",
+          "negation_reversal"
+        ],
+        "rationale": "5% appears only in an explicitly negated comparison, not as the observed error rate.",
+        "evidence_cue_ids": [
+          "N06-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N07",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "N07",
+      "focus": "Chinese numeral magnitude",
+      "source_cues": [
+        {
+          "id": "N07-c1",
+          "start": 0,
+          "end": 5,
+          "text": "这批设备的预算是三十万元。",
+          "speaker": "陈"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "设备预算三百万元",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "三十万变成三百万，数值扩大十倍。",
+        "evidence_cue_ids": [
+          "N07-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N08",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "N08",
+      "focus": "all numbers present but roles swapped",
+      "source_cues": [
+        {
+          "id": "N08-c1",
+          "start": 0,
+          "end": 7,
+          "text": "Last year we processed 50 cases; this year we processed 5.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 7
+        }
+      ],
+      "title": "This year: 50 cases",
+      "copy": "Last year: 5",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "numeric_mismatch"
+        ],
+        "rationale": "Token membership is insufficient: both numbers exist but their temporal roles are swapped.",
+        "evidence_cue_ids": [
+          "N08-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N09",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "numeric-normalization",
+      "focus": "fullwidth punctuation harmless",
+      "source_cues": [
+        {
+          "id": "N09-c1",
+          "start": 0,
+          "end": 6,
+          "text": "样本中的比例为１２．５％。",
+          "speaker": "周"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "样本中的比例为12.5%",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Fullwidth and ASCII digit/punctuation forms denote the same value.",
+        "evidence_cue_ids": [
+          "N09-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N10",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "N10",
+      "focus": "equivalent unit conversion",
+      "source_cues": [
+        {
+          "id": "N10-c1",
+          "start": 0,
+          "end": 5,
+          "text": "Each response took 1500 milliseconds.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "Each response took 1.5 seconds",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "1500 ms equals 1.5 s; a lexical number difference is not evidence of distortion.",
+        "evidence_cue_ids": [
+          "N10-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N11",
+      "synthetic": true,
+      "language": "mixed",
+      "episode_id": "N11",
+      "focus": "editorial number not factual claim",
+      "source_cues": [
+        {
+          "id": "N11-c1",
+          "start": 0,
+          "end": 5,
+          "text": "先做备份，再测试，最后上线。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "3 steps before launch",
+      "copy": "先备份，再测试，最后上线",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Three is the count of the explicitly listed steps, not an invented source statistic.",
+        "evidence_cue_ids": [
+          "N11-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "N12",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "conversion-change",
+      "focus": "accurate percentage-point statement",
+      "source_cues": [
+        {
+          "id": "N12-c1",
+          "start": 0,
+          "end": 6,
+          "text": "Conversion rose from 20% to 23%, an increase of 3 percentage points.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Conversion up 3 percentage points",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Exact percentage-point statement is faithful.",
+        "evidence_cue_ids": [
+          "N12-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "C01",
+      "focus": "condition in previous cue",
+      "source_cues": [
+        {
+          "id": "C01-c1",
+          "start": 0,
+          "end": 3,
+          "text": "This applies only if the backup completes successfully.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "C01-c2",
+          "start": 3,
+          "end": 7,
+          "text": "Then you can delete the temporary copy.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 3,
+          "end": 7
+        }
+      ],
+      "title": "You can delete the temporary copy",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "omitted_condition",
+          "incomplete_reference"
+        ],
+        "rationale": "The selected instruction depends on a success condition outside the clip.",
+        "evidence_cue_ids": [
+          "C01-c1",
+          "C01-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C02",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "C02",
+      "focus": "exception removed",
+      "source_cues": [
+        {
+          "id": "C02-c1",
+          "start": 0,
+          "end": 4,
+          "text": "这个结论不适用于未成年人。",
+          "speaker": "陈"
+        },
+        {
+          "id": "C02-c2",
+          "start": 4,
+          "end": 8,
+          "text": "对这次研究中的成年人，结果成立。",
+          "speaker": "陈"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 4,
+          "end": 8
+        }
+      ],
+      "title": "这个结论适用于所有人",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "omitted_condition"
+        ],
+        "rationale": "The title universalizes a finding explicitly limited to adults in this study.",
+        "evidence_cue_ids": [
+          "C02-c1",
+          "C02-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C03",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "C03",
+      "focus": "negation dropped in copy",
+      "source_cues": [
+        {
+          "id": "C03-c1",
+          "start": 0,
+          "end": 5,
+          "text": "We do not recommend skipping the validation step.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "Validation advice",
+      "copy": "We recommend skipping the validation step.",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "negation_reversal"
+        ],
+        "rationale": "Removing do not reverses the recommendation.",
+        "evidence_cue_ids": [
+          "C03-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C04",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "C04",
+      "focus": "double-negative misread",
+      "source_cues": [
+        {
+          "id": "C04-c1",
+          "start": 0,
+          "end": 5,
+          "text": "并不是所有实验都没有效果；有两个显示了改善。",
+          "speaker": "周"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "所有实验都没有效果",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "negation_reversal"
+        ],
+        "rationale": "The source rejects the universal no-effect claim asserted by the title.",
+        "evidence_cue_ids": [
+          "C04-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C05",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "C05",
+      "focus": "tentative claim made categorical",
+      "source_cues": [
+        {
+          "id": "C05-c1",
+          "start": 0,
+          "end": 6,
+          "text": "This may improve retention in the small pilot, but we have not established causation.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "This causes better retention",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "omitted_condition"
+        ],
+        "rationale": "May, pilot scope, and causal uncertainty are removed.",
+        "evidence_cue_ids": [
+          "C05-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C06",
+      "synthetic": true,
+      "language": "mixed",
+      "episode_id": "C06",
+      "focus": "unless exception omitted",
+      "source_cues": [
+        {
+          "id": "C06-c1",
+          "start": 0,
+          "end": 6,
+          "text": "The retry is safe unless the operation charges the card twice. 重复扣款时不能直接重试。",
+          "speaker": "Lin"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Retries are always safe",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "omitted_condition"
+        ],
+        "rationale": "The explicit repeated-charge exception is erased.",
+        "evidence_cue_ids": [
+          "C06-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C07",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "C07",
+      "focus": "faithful conditional paraphrase",
+      "source_cues": [
+        {
+          "id": "C07-c1",
+          "start": 0,
+          "end": 7,
+          "text": "If the backup completes successfully, you can delete the temporary copy.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 7
+        }
+      ],
+      "title": "Delete the temporary copy only after a successful backup",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "The required backup condition is retained in different syntax.",
+        "evidence_cue_ids": [
+          "C07-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C08",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "C08",
+      "focus": "idiomatic negation harmless",
+      "source_cues": [
+        {
+          "id": "C08-c1",
+          "start": 0,
+          "end": 6,
+          "text": "不只是速度更快，界面也更容易使用。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "更快，也更易用",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "不只是 means not only; removing the idiom in a faithful summary does not reverse a negative claim.",
+        "evidence_cue_ids": [
+          "C08-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "C09",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "C09",
+      "focus": "negation words in different subject",
+      "source_cues": [
+        {
+          "id": "C09-c1",
+          "start": 0,
+          "end": 6,
+          "text": "No tickets remain unresolved. Every reported issue is closed.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "All reported issues are closed",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "The affirmative paraphrase correctly expresses the negative source sentence.",
+        "evidence_cue_ids": [
+          "C09-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q01",
+      "focus": "invented direct quotation",
+      "source_cues": [
+        {
+          "id": "Q01-c1",
+          "start": 0,
+          "end": 6,
+          "text": "We are still assessing whether the approach is suitable.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Maya: “This is guaranteed to work.”",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "unsupported_quote"
+        ],
+        "rationale": "The direct quote is absent and contradicts the tentative source.",
+        "evidence_cue_ids": [
+          "Q01-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q02",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "Q02",
+      "focus": "quote edit changes substantive word",
+      "source_cues": [
+        {
+          "id": "Q02-c1",
+          "start": 0,
+          "end": 5,
+          "text": "我认为这个方案值得测试。",
+          "speaker": "李"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "李：“这个方案已经成功。”",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "unsupported_quote"
+        ],
+        "rationale": "Worth testing is replaced by already succeeded inside quotation marks.",
+        "evidence_cue_ids": [
+          "Q02-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q03",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q03",
+      "focus": "quote assembled across contrast",
+      "source_cues": [
+        {
+          "id": "Q03-c1",
+          "start": 0,
+          "end": 4,
+          "text": "We should ship the prototype to internal testers.",
+          "speaker": "Ari"
+        },
+        {
+          "id": "Q03-c2",
+          "start": 4,
+          "end": 8,
+          "text": "We should not ship it to customers yet.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "title": "“We should ship it to customers”",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "unsupported_quote",
+          "negation_reversal"
+        ],
+        "rationale": "The asserted direct quote is not a supported contiguous utterance and removes not.",
+        "evidence_cue_ids": [
+          "Q03-c1",
+          "Q03-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q04",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q04",
+      "focus": "quote attributed to wrong context",
+      "source_cues": [
+        {
+          "id": "Q04-c1",
+          "start": 0,
+          "end": 4,
+          "text": "A vendor slogan says, “Never fails.”",
+          "speaker": "Maya"
+        },
+        {
+          "id": "Q04-c2",
+          "start": 4,
+          "end": 8,
+          "text": "That slogan is misleading; failures do happen.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "title": "Maya says her method “Never fails”",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misattribution",
+          "omitted_condition"
+        ],
+        "rationale": "A rejected vendor slogan is represented as Maya’s endorsement; the literal quote is present but the attribution/stance is false.",
+        "evidence_cue_ids": [
+          "Q04-c1",
+          "Q04-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q05",
+      "synthetic": true,
+      "language": "mixed",
+      "episode_id": "Q05",
+      "focus": "unmarked translation presented verbatim",
+      "source_cues": [
+        {
+          "id": "Q05-c1",
+          "start": 0,
+          "end": 6,
+          "text": "这个方法还需要更多验证。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Lin: “This method needs more validation.”",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "Translation is plausible, but the original English words were not spoken; an unlabelled cross-language direct quote requires editorial verification.",
+        "evidence_cue_ids": [
+          "Q05-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q06",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q06",
+      "focus": "curly quotes whitespace normalization",
+      "source_cues": [
+        {
+          "id": "Q06-c1",
+          "start": 0,
+          "end": 6,
+          "text": "The plan is simple: test, learn, and repeat.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "“The plan is simple: test, learn, and repeat.”",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Curly enclosing quote marks do not make an otherwise exact quote unsupported.",
+        "evidence_cue_ids": [
+          "Q06-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q07",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "Q07",
+      "focus": "Chinese punctuation quote normalization",
+      "source_cues": [
+        {
+          "id": "Q07-c1",
+          "start": 0,
+          "end": 6,
+          "text": "先测试，再上线。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "林工说：「先测试，再上线。」",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Chinese quotation marks preserve the complete exact sentence.",
+        "evidence_cue_ids": [
+          "Q07-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q08",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q08",
+      "focus": "clearly marked quote omission",
+      "source_cues": [
+        {
+          "id": "Q08-c1",
+          "start": 0,
+          "end": 7,
+          "text": "We tested carefully, documented every result, and released the patch.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 7
+        }
+      ],
+      "title": "“We tested carefully … and released the patch.”",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "The visible ellipsis omits an intervening clause without changing meaning.",
+        "evidence_cue_ids": [
+          "Q08-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "Q09",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "Q09",
+      "focus": "straight apostrophe is not quotation",
+      "source_cues": [
+        {
+          "id": "Q09-c1",
+          "start": 0,
+          "end": 6,
+          "text": "The team's plan wasn't ready on Tuesday.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "The team's plan wasn't ready on Tuesday",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Apostrophes in contractions and possession must not be parsed as fabricated quotations.",
+        "evidence_cue_ids": [
+          "Q09-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "A01",
+      "focus": "wrong named speaker",
+      "source_cues": [
+        {
+          "id": "A01-c1",
+          "start": 0,
+          "end": 5,
+          "text": "I support the proposed timetable.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "A01-c2",
+          "start": 5,
+          "end": 10,
+          "text": "I oppose the proposed timetable.",
+          "speaker": "Leo"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 10
+        }
+      ],
+      "title": "Leo supports the timetable",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misattribution"
+        ],
+        "rationale": "The supporting position belongs to Maya, while Leo opposes it.",
+        "evidence_cue_ids": [
+          "A01-c1",
+          "A01-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A02",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "A02",
+      "focus": "host question changed to guest claim",
+      "source_cues": [
+        {
+          "id": "A02-c1",
+          "start": 0,
+          "end": 4,
+          "text": "你是否认为明年一定盈利？",
+          "speaker": "主持人"
+        },
+        {
+          "id": "A02-c2",
+          "start": 4,
+          "end": 8,
+          "text": "我没有这样说，现在无法判断。",
+          "speaker": "嘉宾"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "title": "嘉宾：明年一定盈利",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misattribution",
+          "negation_reversal"
+        ],
+        "rationale": "The host’s question is falsely presented as the guest’s claim despite an explicit rejection.",
+        "evidence_cue_ids": [
+          "A02-c1",
+          "A02-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A03",
+      "synthetic": true,
+      "language": "mixed",
+      "episode_id": "A03",
+      "focus": "reported claim treated as endorsement",
+      "source_cues": [
+        {
+          "id": "A03-c1",
+          "start": 0,
+          "end": 6,
+          "text": "Alex said the rollout was safe. 我不同意Alex的判断。",
+          "speaker": "Bo"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Bo: the rollout was safe",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misattribution",
+          "negation_reversal"
+        ],
+        "rationale": "Bo reports Alex’s view and explicitly disagrees; the title gives Bo the opposite stance.",
+        "evidence_cue_ids": [
+          "A03-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A04",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "A04",
+      "focus": "accurate named attribution",
+      "source_cues": [
+        {
+          "id": "A04-c1",
+          "start": 0,
+          "end": 5,
+          "text": "I support the proposed timetable.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "A04-c2",
+          "start": 5,
+          "end": 10,
+          "text": "I oppose the proposed timetable.",
+          "speaker": "Leo"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 10
+        }
+      ],
+      "title": "Maya supports the timetable; Leo opposes it",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Both positions are correctly assigned.",
+        "evidence_cue_ids": [
+          "A04-c1",
+          "A04-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A05",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "A05",
+      "focus": "speaker identity unavailable",
+      "source_cues": [
+        {
+          "id": "A05-c1",
+          "start": 0,
+          "end": 6,
+          "text": "我支持这个方案。"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "王博士支持这个方案",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "No speaker metadata or self-identification establishes that the speaker is 王博士; identity cannot be verified.",
+        "evidence_cue_ids": [
+          "A05-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "A06",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "A06",
+      "focus": "title names topic not speaker",
+      "source_cues": [
+        {
+          "id": "A06-c1",
+          "start": 0,
+          "end": 6,
+          "text": "Maya’s book explains three common editing mistakes.",
+          "speaker": "Leo"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Maya’s book: editing mistakes explained",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Naming the author of a discussed book is not attributing Leo’s utterance to Maya.",
+        "evidence_cue_ids": [
+          "A06-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "S01",
+      "focus": "split retraction dropped",
+      "source_cues": [
+        {
+          "id": "S01-c1",
+          "start": 0,
+          "end": 4,
+          "text": "At first, we believed the service was reliable.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S01-c2",
+          "start": 4,
+          "end": 8,
+          "text": "That belief was wrong after the full test.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S01-c3",
+          "start": 8,
+          "end": 12,
+          "text": "The failure rate was unacceptable.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        },
+        {
+          "start": 8,
+          "end": 12
+        }
+      ],
+      "title": "The service was reliable",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misleading_splice",
+          "omitted_condition"
+        ],
+        "rationale": "The title turns an explicitly retracted prior belief into the final conclusion; the cut removes the retraction.",
+        "evidence_cue_ids": [
+          "S01-c1",
+          "S01-c2",
+          "S01-c3"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S02",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "S02",
+      "focus": "split removes intervening negation",
+      "source_cues": [
+        {
+          "id": "S02-c1",
+          "start": 0,
+          "end": 3,
+          "text": "有人说这个补丁解决了所有问题。",
+          "speaker": "林工"
+        },
+        {
+          "id": "S02-c2",
+          "start": 3,
+          "end": 6,
+          "text": "但这不是真的。",
+          "speaker": "林工"
+        },
+        {
+          "id": "S02-c3",
+          "start": 6,
+          "end": 10,
+          "text": "我们仍在逐项验证。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 3
+        },
+        {
+          "start": 6,
+          "end": 10
+        }
+      ],
+      "title": "补丁解决了所有问题",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misleading_splice",
+          "negation_reversal"
+        ],
+        "rationale": "The intervening denial is removed and reported speech is presented as established fact.",
+        "evidence_cue_ids": [
+          "S02-c1",
+          "S02-c2",
+          "S02-c3"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S03",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "S03",
+      "focus": "juxtaposition changes causal relation",
+      "source_cues": [
+        {
+          "id": "S03-c1",
+          "start": 0,
+          "end": 4,
+          "text": "We launched the new logo in May.",
+          "speaker": "Ari"
+        },
+        {
+          "id": "S03-c2",
+          "start": 4,
+          "end": 8,
+          "text": "The profit increase came from a one-time tax credit, unrelated to the logo.",
+          "speaker": "Ari"
+        },
+        {
+          "id": "S03-c3",
+          "start": 8,
+          "end": 12,
+          "text": "Profit increased that quarter.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        },
+        {
+          "start": 8,
+          "end": 12
+        }
+      ],
+      "title": "New logo boosted profit",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misleading_splice",
+          "omitted_condition"
+        ],
+        "rationale": "The removed cue explicitly rules out the causal relationship the title introduces.",
+        "evidence_cue_ids": [
+          "S03-c1",
+          "S03-c2",
+          "S03-c3"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S04",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "S04",
+      "focus": "chronology reversed across ranges",
+      "source_cues": [
+        {
+          "id": "S04-c1",
+          "start": 0,
+          "end": 4,
+          "text": "早期我们曾支持这个方案。",
+          "speaker": "陈"
+        },
+        {
+          "id": "S04-c2",
+          "start": 4,
+          "end": 8,
+          "text": "验证之后，我们决定否决这个方案。",
+          "speaker": "陈"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 4,
+          "end": 8
+        },
+        {
+          "start": 0,
+          "end": 4
+        }
+      ],
+      "title": "最终决定：支持这个方案",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "misleading_splice"
+        ],
+        "rationale": "Reversed source order ends on the old position and title falsely labels it the final decision.",
+        "evidence_cue_ids": [
+          "S04-c1",
+          "S04-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S05",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "S05",
+      "focus": "safe discontinuous list",
+      "source_cues": [
+        {
+          "id": "S05-c1",
+          "start": 0,
+          "end": 4,
+          "text": "First, save a copy of the document.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S05-c2",
+          "start": 4,
+          "end": 8,
+          "text": "Let me take a sip of water.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S05-c3",
+          "start": 8,
+          "end": 12,
+          "text": "Second, check the recipient before sending.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        },
+        {
+          "start": 8,
+          "end": 12
+        }
+      ],
+      "title": "Save a copy and check the recipient",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Removing an unrelated pause between independent steps does not distort the advice.",
+        "evidence_cue_ids": [
+          "S05-c1",
+          "S05-c2",
+          "S05-c3"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S06",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "S06",
+      "focus": "same-speaker adjacent ranges benign",
+      "source_cues": [
+        {
+          "id": "S06-c1",
+          "start": 0,
+          "end": 4,
+          "text": "今天介绍两条建议：先备份。",
+          "speaker": "林工"
+        },
+        {
+          "id": "S06-c2",
+          "start": 4,
+          "end": 8,
+          "text": "再检查文件权限。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        },
+        {
+          "start": 4,
+          "end": 8
+        }
+      ],
+      "title": "两条建议：备份，检查权限",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "Adjacent ranges preserve all source content and chronology.",
+        "evidence_cue_ids": [
+          "S06-c1",
+          "S06-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "S07",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "S07",
+      "focus": "irrelevant omitted context benign",
+      "source_cues": [
+        {
+          "id": "S07-c1",
+          "start": 0,
+          "end": 4,
+          "text": "The key finding is that the archive is intact.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S07-c2",
+          "start": 4,
+          "end": 9,
+          "text": "Our meeting room changed from Oak to Cedar.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "S07-c3",
+          "start": 9,
+          "end": 13,
+          "text": "No archived file was lost.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        },
+        {
+          "start": 9,
+          "end": 13
+        }
+      ],
+      "title": "The archive is intact; no file was lost",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "The omitted scheduling detail is irrelevant to the complete archive claim.",
+        "evidence_cue_ids": [
+          "S07-c1",
+          "S07-c2",
+          "S07-c3"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "R01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "R01",
+      "focus": "unresolved leading pronoun",
+      "source_cues": [
+        {
+          "id": "R01-c1",
+          "start": 0,
+          "end": 4,
+          "text": "The second backup failed its checksum.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "R01-c2",
+          "start": 4,
+          "end": 8,
+          "text": "It should not be used for recovery.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 4,
+          "end": 8
+        }
+      ],
+      "title": "Recovery warning",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "incomplete_reference"
+        ],
+        "rationale": "The selected clip contains only it with its identity outside the clip.",
+        "evidence_cue_ids": [
+          "R01-c1",
+          "R01-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "R02",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "R02",
+      "focus": "deictic opening depends on omitted cue",
+      "source_cues": [
+        {
+          "id": "R02-c1",
+          "start": 0,
+          "end": 4,
+          "text": "问题在于同时修改两份主文件。",
+          "speaker": "林工"
+        },
+        {
+          "id": "R02-c2",
+          "start": 4,
+          "end": 8,
+          "text": "这样做会造成冲突。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 4,
+          "end": 8
+        }
+      ],
+      "title": "这样做会造成冲突",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "incomplete_reference"
+        ],
+        "rationale": "这样做 lacks the action it refers to inside the selected clip.",
+        "evidence_cue_ids": [
+          "R02-c1",
+          "R02-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "R03",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "R03",
+      "focus": "unfinished clause at clip end",
+      "source_cues": [
+        {
+          "id": "R03-c1",
+          "start": 0,
+          "end": 4,
+          "text": "The plan will work only if",
+          "speaker": "Ari"
+        },
+        {
+          "id": "R03-c2",
+          "start": 4,
+          "end": 8,
+          "text": "the data quality checks pass.",
+          "speaker": "Ari"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        }
+      ],
+      "title": "The plan will work",
+      "copy": "",
+      "expected": {
+        "mode": "flag",
+        "labels": [
+          "incomplete_reference",
+          "omitted_condition"
+        ],
+        "rationale": "The selected content ends on only if and omits the mandatory completion.",
+        "evidence_cue_ids": [
+          "R03-c1",
+          "R03-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "R04",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "R04",
+      "focus": "pronoun resolved within selection",
+      "source_cues": [
+        {
+          "id": "R04-c1",
+          "start": 0,
+          "end": 4,
+          "text": "The second backup failed its checksum.",
+          "speaker": "Maya"
+        },
+        {
+          "id": "R04-c2",
+          "start": 4,
+          "end": 8,
+          "text": "It should not be used for recovery.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 8
+        }
+      ],
+      "title": "Do not use the failed second backup for recovery",
+      "copy": "",
+      "expected": {
+        "mode": "clear",
+        "labels": [],
+        "rationale": "The referent is explicitly present before the pronoun in the selected clip.",
+        "evidence_cue_ids": [
+          "R04-c1",
+          "R04-c2"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "R05",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "R05",
+      "focus": "visual referent unknown",
+      "source_cues": [
+        {
+          "id": "R05-c1",
+          "start": 0,
+          "end": 5,
+          "text": "请点击这里，然后选这个。",
+          "speaker": "林工"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "操作演示",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "The audio transcript depends on visible UI pointers; neither the referents nor a distortion can be established without video.",
+        "evidence_cue_ids": [
+          "R05-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "U01",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "U01",
+      "focus": "world truth outside source scope",
+      "source_cues": [
+        {
+          "id": "U01-c1",
+          "start": 0,
+          "end": 6,
+          "text": "The Moon is made of cheese.",
+          "speaker": "Fictional narrator"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "The Moon is made of cheese",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "The title is source-faithful; transcript comparison cannot verify real-world truth and must not certify factual correctness.",
+        "evidence_cue_ids": [
+          "U01-c1"
+        ]
+      },
+      "tags": [
+        "source_faithful",
+        "world_truth_unassessed"
+      ]
+    },
+    {
+      "id": "U02",
+      "synthetic": true,
+      "language": "mixed",
+      "episode_id": "U02",
+      "focus": "sarcasm requires prosody",
+      "source_cues": [
+        {
+          "id": "U02-c1",
+          "start": 0,
+          "end": 6,
+          "text": "Great, another perfect release. 真是太棒了。",
+          "speaker": "Bo"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Bo celebrates a perfect release",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "Without delivery and contextual evidence this could be sincere or sarcastic; textual surface match cannot verify stance.",
+        "evidence_cue_ids": [
+          "U02-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "U03",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "U03",
+      "focus": "cut falls inside cue",
+      "source_cues": [
+        {
+          "id": "U03-c1",
+          "start": 0,
+          "end": 10,
+          "text": "We do not support skipping the safety review.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 3,
+          "end": 8
+        }
+      ],
+      "title": "We support skipping the safety review",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "Cue-level timing cannot determine which words survive an internal cut; word-level audio alignment is needed.",
+        "evidence_cue_ids": [
+          "U03-c1"
+        ]
+      },
+      "tags": [
+        "partial_cue"
+      ]
+    },
+    {
+      "id": "U04",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "U04",
+      "focus": "ASR uncertainty marked",
+      "source_cues": [
+        {
+          "id": "U04-c1",
+          "start": 0,
+          "end": 6,
+          "text": "成本是[听不清：十五/五十]万元。",
+          "speaker": "陈"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "成本五十万元",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "Explicit ASR ambiguity prevents verification of the amount; choosing one alternative should not be certified.",
+        "evidence_cue_ids": [
+          "U04-c1"
+        ]
+      },
+      "tags": []
+    },
+    {
+      "id": "U05",
+      "synthetic": true,
+      "language": "en",
+      "episode_id": "U05",
+      "focus": "unannotated edit effect unknown",
+      "source_cues": [
+        {
+          "id": "U05-c1",
+          "start": 0,
+          "end": 5,
+          "text": "It was an ordinary Tuesday morning.",
+          "speaker": "Maya"
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "An ordinary Tuesday morning",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "The supplied transcript cannot assess omitted on-screen text, music, thumbnails, or visual juxtaposition.",
+        "evidence_cue_ids": [
+          "U05-c1"
+        ]
+      },
+      "tags": [
+        "text_faithful",
+        "audiovisual_effects_unassessed"
+      ]
+    },
+    {
+      "id": "U06",
+      "synthetic": true,
+      "language": "zh",
+      "episode_id": "U06",
+      "focus": "no source text supplied",
+      "source_cues": [],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 5
+        }
+      ],
+      "title": "这个方案已经得到验证",
+      "copy": "",
+      "expected": {
+        "mode": "abstain",
+        "labels": [
+          "insufficient_evidence"
+        ],
+        "rationale": "No source evidence is available, so neither source support nor contradiction can be established.",
+        "evidence_cue_ids": []
+      },
+      "tags": [
+        "missing_source"
+      ]
+    }
+  ]
+}

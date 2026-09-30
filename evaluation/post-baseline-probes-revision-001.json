@@ -1,0 +1,675 @@
+{
+  "synthetic": true,
+  "not_independent_holdout": true,
+  "not_in_frozen_semantic_metrics": true,
+  "at": "2026-09-30T07:41:50.619Z",
+  "probes": [
+    {
+      "id": "D01",
+      "synthetic": true,
+      "description": "Direct quote crosses two explicit speakers",
+      "input": {
+        "transcript": [
+          {
+            "id": "a",
+            "start": 0,
+            "end": 3,
+            "text": "We should stop now.",
+            "speaker": "Maya"
+          },
+          {
+            "id": "b",
+            "start": 3,
+            "end": 6,
+            "text": "Then continue tomorrow.",
+            "speaker": "Leo"
+          }
+        ],
+        "ranges": [
+          {
+            "start": 0,
+            "end": 6
+          }
+        ],
+        "title": "Maya: “We should stop now. Then continue tomorrow.”"
+      },
+      "expected": "Not supported as one Maya utterance; explicit speaker boundary requires review.",
+      "result": {
+        "schemaVersion": "1.0",
+        "engine": {
+          "name": "ClipLint",
+          "version": "0.1.0",
+          "mode": "deterministic-and-heuristic"
+        },
+        "status": "needs-review",
+        "summary": {
+          "issueCount": 1,
+          "bySeverity": {
+            "high": 0,
+            "medium": 1,
+            "low": 0,
+            "info": 0
+          },
+          "selectedDuration": 6,
+          "selectedCueCount": 2
+        },
+        "source": {
+          "duration": 6,
+          "cueCount": 2,
+          "format": "json"
+        },
+        "selection": {
+          "ranges": [
+            {
+              "start": 0,
+              "end": 6
+            }
+          ],
+          "text": "We should stop now. Then continue tomorrow.",
+          "timingPrecision": "cue-level"
+        },
+        "draft": {
+          "title": "Maya: “We should stop now. Then continue tomorrow.”",
+          "copy": ""
+        },
+        "issues": [
+          {
+            "id": "issue-1",
+            "ruleId": "QUOTE_NOT_FOUND",
+            "assessment": "deterministic",
+            "severity": "medium",
+            "confidence": "high",
+            "title": "Quoted wording was not found verbatim",
+            "message": "“We should stop now. Then continue tomorrow.” has no normalized match within one continuous speaker block in the supplied transcript.",
+            "draftField": "title",
+            "draftSpan": {
+              "start": 6,
+              "text": "We should stop now. Then continue tomorrow."
+            },
+            "evidence": [
+              {
+                "cueId": "cue-1",
+                "start": 0,
+                "end": 3,
+                "text": "We should stop now.",
+                "role": "selected",
+                "speaker": "Maya",
+                "sourceId": "a"
+              },
+              {
+                "cueId": "cue-2",
+                "start": 3,
+                "end": 6,
+                "text": "Then continue tomorrow.",
+                "role": "selected",
+                "speaker": "Leo",
+                "sourceId": "b"
+              }
+            ],
+            "suggestion": "Check the recording and quotation. Use exact wording or clearly label a paraphrase.",
+            "uncertainty": "Matching ignores case and ordinary punctuation, preserves English word boundaries/hyphens, and permits ordered ellipsis fragments. Ellipses may still omit meaning-critical context. Audio, ASR accuracy, translation, and rhetorical use of quotes are unassessed."
+          }
+        ],
+        "coverage": [
+          {
+            "ruleId": "RANGE_INVALID",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_EMPTY",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_OVERLAP",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "PARTIAL_CUE",
+            "status": "checked"
+          },
+          {
+            "ruleId": "OMITTED_QUALIFIER",
+            "status": "skipped",
+            "reason": "No eligible nearby omitted cues with compatible explicit speaker metadata."
+          },
+          {
+            "ruleId": "DANGLING_OPENING",
+            "status": "checked"
+          },
+          {
+            "ruleId": "STITCH_CONTEXT",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "NUMBER_MISMATCH",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "NUMBER_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "QUOTE_NOT_FOUND",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_OUTSIDE_CLIP",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+            "status": "skipped",
+            "reason": "No comparable quote attribution with known explicit source speaker metadata."
+          }
+        ],
+        "warnings": [],
+        "semanticAssessment": {
+          "status": "unassessed",
+          "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+        },
+        "limitations": [
+          "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+          "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+          "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+          "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+          "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+          "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+          "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+        ]
+      }
+    },
+    {
+      "id": "D02",
+      "synthetic": true,
+      "description": "Whitespace removal changes now here to nowhere",
+      "input": {
+        "transcript": [
+          {
+            "id": "a",
+            "start": 0,
+            "end": 5,
+            "text": "We are now here.",
+            "speaker": "Maya"
+          }
+        ],
+        "ranges": [
+          {
+            "start": 0,
+            "end": 5
+          }
+        ],
+        "title": "“We are nowhere.”"
+      },
+      "expected": "Quoted wording differs; word boundaries carry meaning.",
+      "result": {
+        "schemaVersion": "1.0",
+        "engine": {
+          "name": "ClipLint",
+          "version": "0.1.0",
+          "mode": "deterministic-and-heuristic"
+        },
+        "status": "needs-review",
+        "summary": {
+          "issueCount": 1,
+          "bySeverity": {
+            "high": 0,
+            "medium": 1,
+            "low": 0,
+            "info": 0
+          },
+          "selectedDuration": 5,
+          "selectedCueCount": 1
+        },
+        "source": {
+          "duration": 5,
+          "cueCount": 1,
+          "format": "json"
+        },
+        "selection": {
+          "ranges": [
+            {
+              "start": 0,
+              "end": 5
+            }
+          ],
+          "text": "We are now here.",
+          "timingPrecision": "cue-level"
+        },
+        "draft": {
+          "title": "“We are nowhere.”",
+          "copy": ""
+        },
+        "issues": [
+          {
+            "id": "issue-1",
+            "ruleId": "QUOTE_NOT_FOUND",
+            "assessment": "deterministic",
+            "severity": "medium",
+            "confidence": "high",
+            "title": "Quoted wording was not found verbatim",
+            "message": "“We are nowhere.” has no normalized match within one continuous speaker block in the supplied transcript.",
+            "draftField": "title",
+            "draftSpan": {
+              "start": 0,
+              "text": "We are nowhere."
+            },
+            "evidence": [],
+            "suggestion": "Check the recording and quotation. Use exact wording or clearly label a paraphrase.",
+            "uncertainty": "Matching ignores case and ordinary punctuation, preserves English word boundaries/hyphens, and permits ordered ellipsis fragments. Ellipses may still omit meaning-critical context. Audio, ASR accuracy, translation, and rhetorical use of quotes are unassessed."
+          }
+        ],
+        "coverage": [
+          {
+            "ruleId": "RANGE_INVALID",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_EMPTY",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_OVERLAP",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "PARTIAL_CUE",
+            "status": "checked"
+          },
+          {
+            "ruleId": "OMITTED_QUALIFIER",
+            "status": "skipped",
+            "reason": "No eligible nearby omitted cues with compatible explicit speaker metadata."
+          },
+          {
+            "ruleId": "DANGLING_OPENING",
+            "status": "checked"
+          },
+          {
+            "ruleId": "STITCH_CONTEXT",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "NUMBER_MISMATCH",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "NUMBER_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "QUOTE_NOT_FOUND",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_OUTSIDE_CLIP",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+            "status": "skipped",
+            "reason": "No comparable quote attribution with known explicit source speaker metadata."
+          }
+        ],
+        "warnings": [],
+        "semanticAssessment": {
+          "status": "unassessed",
+          "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+        },
+        "limitations": [
+          "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+          "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+          "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+          "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+          "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+          "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+          "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+        ]
+      }
+    },
+    {
+      "id": "D03",
+      "synthetic": true,
+      "description": "Hyphen removal changes re-sign to resign",
+      "input": {
+        "transcript": [
+          {
+            "id": "a",
+            "start": 0,
+            "end": 5,
+            "text": "I will re-sign tomorrow.",
+            "speaker": "Maya"
+          }
+        ],
+        "ranges": [
+          {
+            "start": 0,
+            "end": 5
+          }
+        ],
+        "title": "“I will resign tomorrow.”"
+      },
+      "expected": "Meaningful punctuation difference needs review rather than exact-quote support.",
+      "result": {
+        "schemaVersion": "1.0",
+        "engine": {
+          "name": "ClipLint",
+          "version": "0.1.0",
+          "mode": "deterministic-and-heuristic"
+        },
+        "status": "needs-review",
+        "summary": {
+          "issueCount": 1,
+          "bySeverity": {
+            "high": 0,
+            "medium": 1,
+            "low": 0,
+            "info": 0
+          },
+          "selectedDuration": 5,
+          "selectedCueCount": 1
+        },
+        "source": {
+          "duration": 5,
+          "cueCount": 1,
+          "format": "json"
+        },
+        "selection": {
+          "ranges": [
+            {
+              "start": 0,
+              "end": 5
+            }
+          ],
+          "text": "I will re-sign tomorrow.",
+          "timingPrecision": "cue-level"
+        },
+        "draft": {
+          "title": "“I will resign tomorrow.”",
+          "copy": ""
+        },
+        "issues": [
+          {
+            "id": "issue-1",
+            "ruleId": "QUOTE_NOT_FOUND",
+            "assessment": "deterministic",
+            "severity": "medium",
+            "confidence": "high",
+            "title": "Quoted wording was not found verbatim",
+            "message": "“I will resign tomorrow.” has no normalized match within one continuous speaker block in the supplied transcript.",
+            "draftField": "title",
+            "draftSpan": {
+              "start": 0,
+              "text": "I will resign tomorrow."
+            },
+            "evidence": [
+              {
+                "cueId": "cue-1",
+                "start": 0,
+                "end": 5,
+                "text": "I will re-sign tomorrow.",
+                "role": "selected",
+                "speaker": "Maya",
+                "sourceId": "a"
+              }
+            ],
+            "suggestion": "Check the recording and quotation. Use exact wording or clearly label a paraphrase.",
+            "uncertainty": "Matching ignores case and ordinary punctuation, preserves English word boundaries/hyphens, and permits ordered ellipsis fragments. Ellipses may still omit meaning-critical context. Audio, ASR accuracy, translation, and rhetorical use of quotes are unassessed."
+          }
+        ],
+        "coverage": [
+          {
+            "ruleId": "RANGE_INVALID",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_EMPTY",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_OVERLAP",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "PARTIAL_CUE",
+            "status": "checked"
+          },
+          {
+            "ruleId": "OMITTED_QUALIFIER",
+            "status": "skipped",
+            "reason": "No eligible nearby omitted cues with compatible explicit speaker metadata."
+          },
+          {
+            "ruleId": "DANGLING_OPENING",
+            "status": "checked"
+          },
+          {
+            "ruleId": "STITCH_CONTEXT",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "NUMBER_MISMATCH",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "NUMBER_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "QUOTE_NOT_FOUND",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_OUTSIDE_CLIP",
+            "status": "checked"
+          },
+          {
+            "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+            "status": "skipped",
+            "reason": "No comparable quote attribution with known explicit source speaker metadata."
+          }
+        ],
+        "warnings": [],
+        "semanticAssessment": {
+          "status": "unassessed",
+          "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+        },
+        "limitations": [
+          "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+          "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+          "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+          "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+          "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+          "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+          "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+        ]
+      }
+    },
+    {
+      "id": "D04",
+      "synthetic": true,
+      "description": "Retained ordinary pronoun receives insufficient context",
+      "input": {
+        "transcript": [
+          {
+            "id": "a",
+            "start": 0,
+            "end": 3,
+            "text": "I saw the vase.",
+            "speaker": "Maya"
+          },
+          {
+            "id": "b",
+            "start": 3,
+            "end": 6,
+            "text": "It was broken.",
+            "speaker": "Maya"
+          }
+        ],
+        "ranges": [
+          {
+            "start": 3,
+            "end": 6
+          }
+        ],
+        "title": "A broken object"
+      },
+      "expected": "Incomplete leading referent.",
+      "result": {
+        "schemaVersion": "1.0",
+        "engine": {
+          "name": "ClipLint",
+          "version": "0.1.0",
+          "mode": "deterministic-and-heuristic"
+        },
+        "status": "needs-review",
+        "summary": {
+          "issueCount": 1,
+          "bySeverity": {
+            "high": 0,
+            "medium": 0,
+            "low": 1,
+            "info": 0
+          },
+          "selectedDuration": 3,
+          "selectedCueCount": 1
+        },
+        "source": {
+          "duration": 6,
+          "cueCount": 2,
+          "format": "json"
+        },
+        "selection": {
+          "ranges": [
+            {
+              "start": 3,
+              "end": 6
+            }
+          ],
+          "text": "It was broken.",
+          "timingPrecision": "cue-level"
+        },
+        "draft": {
+          "title": "A broken object",
+          "copy": ""
+        },
+        "issues": [
+          {
+            "id": "issue-1",
+            "ruleId": "DANGLING_OPENING",
+            "assessment": "heuristic",
+            "severity": "low",
+            "confidence": "low",
+            "title": "Opening may depend on earlier context",
+            "message": "The first selected cue begins with a reference or consequence cue that may rely on omitted speech.",
+            "rangeIndex": 0,
+            "evidence": [
+              {
+                "cueId": "cue-1",
+                "start": 0,
+                "end": 3,
+                "text": "I saw the vase.",
+                "role": "omitted",
+                "speaker": "Maya",
+                "sourceId": "a"
+              },
+              {
+                "cueId": "cue-2",
+                "start": 3,
+                "end": 6,
+                "text": "It was broken.",
+                "role": "selected",
+                "speaker": "Maya",
+                "sourceId": "b"
+              }
+            ],
+            "suggestion": "Check whether the audience can identify the referent; extend the opening or add a faithful context label.",
+            "uncertainty": "Pronouns and transitions can be fully understandable on their own. This rule does not resolve references."
+          }
+        ],
+        "coverage": [
+          {
+            "ruleId": "RANGE_INVALID",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_EMPTY",
+            "status": "checked"
+          },
+          {
+            "ruleId": "RANGE_OVERLAP",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "PARTIAL_CUE",
+            "status": "checked"
+          },
+          {
+            "ruleId": "OMITTED_QUALIFIER",
+            "status": "checked"
+          },
+          {
+            "ruleId": "DANGLING_OPENING",
+            "status": "checked"
+          },
+          {
+            "ruleId": "STITCH_CONTEXT",
+            "status": "skipped",
+            "reason": "Only one range was selected."
+          },
+          {
+            "ruleId": "NUMBER_MISMATCH",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "NUMBER_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "No supported unit-bearing Arabic or common Chinese cardinal numeral appears in the draft; unsupported and bare numbers are not assessed."
+          },
+          {
+            "ruleId": "QUOTE_NOT_FOUND",
+            "status": "skipped",
+            "reason": "No quote of at least 8 normalized characters or 4 Chinese characters was detected."
+          },
+          {
+            "ruleId": "QUOTE_OUTSIDE_CLIP",
+            "status": "skipped",
+            "reason": "No quote of at least 8 normalized characters or 4 Chinese characters was detected."
+          },
+          {
+            "ruleId": "QUOTE_ATTRIBUTION_MISMATCH",
+            "status": "skipped",
+            "reason": "No comparable quote attribution with known explicit source speaker metadata."
+          }
+        ],
+        "warnings": [],
+        "semanticAssessment": {
+          "status": "unassessed",
+          "reason": "No model or semantic truth assessment runs. Human review of audio, meaning, attribution, and intent remains necessary."
+        },
+        "limitations": [
+          "A source-context preflight, not a truth, legal, copyright, consent, or publish-safety check. No model is called.",
+          "No signals means no implemented rule fired. It is not evidence that a clip is faithful, accurate, or safe to publish.",
+          "Cue-level timestamps include whole overlapping cues; exact retained words require audio or word-level timing.",
+          "English and Chinese lexicons are incomplete. Negation, sarcasm, scope, topic changes, and complex reference resolution may be missed or flagged incorrectly.",
+          "Quantity matching handles supported Arabic and common Chinese cardinal numerals with explicit units. Only ms/second/minute/hour scaling is converted; no arithmetic, currency conversion, role assignment, or rounding is inferred. Same value does not establish same referent.",
+          "The supplied transcript may be incomplete or wrong. Speaker metadata is used only when explicitly supplied.",
+          "Visual edits, thumbnails, on-screen text, tone, music, delivery, and actual media timing are not inspected."
+        ]
+      }
+    }
+  ]
+}

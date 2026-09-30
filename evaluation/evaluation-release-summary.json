@@ -1,0 +1,79 @@
+{
+  "synthetic": true,
+  "real_world_accuracy_claim": false,
+  "gold_unchanged": true,
+  "baseline_is_initial_independent_run": true,
+  "latest_is_known_case_development_regression": true,
+  "latest_run": "revision-002",
+  "semantic_case_count": 54,
+  "determinate_count": 45,
+  "positive_count": 28,
+  "benign_control_count": 17,
+  "abstention_count": 9,
+  "malformed_count": 8,
+  "latest_all_rule_outputs": {
+    "positiveCount": 28,
+    "controlCount": 17,
+    "trueAlertCount": 15,
+    "falseAlertCount": 2,
+    "missedCaseIds": [
+      "N05",
+      "N06",
+      "N08",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "Q04",
+      "A01",
+      "A02",
+      "A03",
+      "R03"
+    ],
+    "falseAlertCaseIds": [
+      "S05",
+      "S07"
+    ],
+    "anyAlertRecall": 0.5357142857142857,
+    "controlFalseAlertRate": 0.11764705882352941
+  },
+  "latest_non_info_outputs": {
+    "positiveCount": 28,
+    "controlCount": 17,
+    "trueAlertCount": 13,
+    "falseAlertCount": 0,
+    "missedCaseIds": [
+      "N05",
+      "N06",
+      "N08",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "Q04",
+      "A01",
+      "A02",
+      "A03",
+      "S01",
+      "S03",
+      "R03"
+    ],
+    "falseAlertCaseIds": [],
+    "anyAlertRecall": 0.4642857142857143,
+    "controlFalseAlertRate": 0
+  },
+  "source_hashes": {
+    "src/constants.js": "49c24b973571e7dcd32817d776ea62c49cf4e4c7d3ac704053ab614535e1ad0f",
+    "src/index.js": "a380c2d1d660703c0f57dcf5489d2954a509c3f879bc8933720d5cf1a5d3282f",
+    "src/markdown.js": "f3891fd3b954db4782347fd8ddf7e7a143748e81bf579ec6250ecebe6aa3e632",
+    "src/review.js": "1da33b3b209850e3161e12c891f225ba06c11f0b93409452779d4d59497e253f",
+    "src/text.js": "fa5d355ac8ef16b94ccb93a7f8f2e7f21ba57ac0d4d3ed289023f362f055ac31",
+    "src/transcript.js": "6e5efd489d8f52e14f5ed7708f479f9c6cd8bae3b91a2b854c09ad3892bfc70e"
+  },
+  "interface_checks_passed": 9,
+  "supplemental_semantic_probes_resolved": 4,
+  "portable_download_layout": "passed",
+  "semantic_truth_assessment": "unassessed"
+}

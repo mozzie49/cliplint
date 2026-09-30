@@ -1,0 +1,189 @@
+{
+  "schema_version": "1.0",
+  "synthetic": true,
+  "not_in_semantic_metrics": true,
+  "cases": [
+    {
+      "id": "M01",
+      "synthetic": true,
+      "description": "Negative cue start",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": -1,
+          "end": 2,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 2
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error; do not silently clamp and certify."
+    },
+    {
+      "id": "M02",
+      "synthetic": true,
+      "description": "Cue end precedes start",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": 5,
+          "end": 2,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 6
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error."
+    },
+    {
+      "id": "M03",
+      "synthetic": true,
+      "description": "Zero-length clip range",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": 0,
+          "end": 2,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 1,
+          "end": 1
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error, never clean supported output."
+    },
+    {
+      "id": "M04",
+      "synthetic": true,
+      "description": "Timestamp string instead of number",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": "bad",
+          "end": 2,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 2
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error."
+    },
+    {
+      "id": "M05",
+      "synthetic": true,
+      "description": "Duplicate cue identifiers",
+      "source_cues": [
+        {
+          "id": "same",
+          "start": 0,
+          "end": 2,
+          "text": "Hello."
+        },
+        {
+          "id": "same",
+          "start": 2,
+          "end": 4,
+          "text": "Goodbye."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 4
+        }
+      ],
+      "title": "Greeting",
+      "copy": "",
+      "expected": "Reject, explicitly warn, or safely reassign unique IDs while preserving evidence provenance."
+    },
+    {
+      "id": "M06",
+      "synthetic": true,
+      "description": "Null required cue text",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": 0,
+          "end": 2,
+          "text": null
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 0,
+          "end": 2
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error."
+    },
+    {
+      "id": "M07",
+      "synthetic": true,
+      "description": "Clip selection outside source extent",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": 0,
+          "end": 2,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 30,
+          "end": 40
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Explicitly report empty/uncovered selection; do not claim source support."
+    },
+    {
+      "id": "M08",
+      "synthetic": true,
+      "description": "Reversed clip range",
+      "source_cues": [
+        {
+          "id": "c1",
+          "start": 0,
+          "end": 5,
+          "text": "Hello."
+        }
+      ],
+      "clip_ranges": [
+        {
+          "start": 4,
+          "end": 1
+        }
+      ],
+      "title": "Hello",
+      "copy": "",
+      "expected": "Reject or return an explicit validation error."
+    }
+  ]
+}
