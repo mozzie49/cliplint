@@ -1,5 +1,7 @@
 # ClipLint
 
+[Try the live workbench / 在线体验](https://mozzie49.github.io/cliplint/dist/) · [Verified CI run](https://github.com/mozzie49/cliplint/actions/runs/36691548625)
+
 [中文说明](#中文说明) · [Source repository](https://github.com/mozzie49/cliplint)
 
 A local-first, bilingual pre-publication review workbench for interview and podcast clips. Compare selected source ranges and publishing copy against a timestamped transcript, inspect concrete rule signals in context, and keep an auditable human review trail.
