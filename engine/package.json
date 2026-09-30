@@ -1,0 +1,13 @@
+{
+  "name": "cliplint",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first, evidence-linked clip context review. Heuristics, never a truth verdict.",
+  "type": "module",
+  "exports": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "bin": { "cliplint": "./bin/cliplint.js" },
+  "scripts": { "test": "node --test", "demo": "node bin/cliplint.js --transcript examples/synthetic-interview.srt --ranges 8:16 --title 'AI cuts support costs by 80%' --format markdown" },
+  "engines": { "node": ">=20" },
+  "license": "MIT"
+}
