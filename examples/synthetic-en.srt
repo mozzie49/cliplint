@@ -1,0 +1,27 @@
+1
+00:00:00,000 --> 00:00:04,000
+Host: What did your small pilot tell you?
+
+2
+00:00:04,000 --> 00:00:08,000
+Guest: First, this was a pilot with only 20 volunteers, not a firm conclusion.
+
+3
+00:00:08,000 --> 00:00:12,000
+Guest: Completion increased from 40% to 60%.
+
+4
+00:00:12,000 --> 00:00:16,000
+Guest: In this sample, the new workflow may have reduced waiting time.
+
+5
+00:00:16,000 --> 00:00:20,000
+Guest: But we cannot prove that it works for everyone.
+
+6
+00:00:20,000 --> 00:00:24,000
+Host: So it still needs longer-term testing?
+
+7
+00:00:24,000 --> 00:00:28,000
+Guest: Yes. We need at least three more months and have not run a randomized comparison.
